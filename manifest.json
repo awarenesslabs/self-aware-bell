@@ -1,19 +1,19 @@
 {
   "manifest_version": 2,
 
-  "name": "Mindfulness bell",
+  "name": "Self Aware Bell",
   "description": "This extension allows the user to be aware.",
-  "version": "1.0",
+  "version": "1.1",
 
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html",
-    "default_title": "Mindfulness Bell"
+    "default_title": "Self Aware Bell"
   },
   
   "background" : {
     "scripts": ["eventPage.js"],
-    "persistent": false //TODO - might need to set to true
+    "persistent": false
   },
 
   "permissions": ["alarms", "notifications", "storage"]
