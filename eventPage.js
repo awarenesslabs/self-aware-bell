@@ -5,8 +5,6 @@ chrome.runtime.onInstalled.addListener(function(){
 });
 
 chrome.alarms.onAlarm.addListener(function() {
-  chrome.browserAction.setBadgeText({text: ''});
-  
   const audio = new Audio('bell.mp3');
   audio.play();
 
@@ -19,11 +17,15 @@ chrome.alarms.onAlarm.addListener(function() {
         {title: 'Breathing...'}
       ],
       priority: 0});
+  
+  chrome.storage.sync.get(['minutes'], function(item) {
+    chrome.alarms.create({delayInMinutes: item.minutes});
+  })
 });
 
 chrome.notifications.onButtonClicked.addListener(function() {
   chrome.storage.sync.get(['minutes'], function(item) {
-    chrome.browserAction.setBadgeText({text: 'ON'});
+    chrome.browserAction.setBadgeText({text: ' '});
     chrome.alarms.create({delayInMinutes: item.minutes});
   });
 });

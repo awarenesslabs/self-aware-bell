@@ -2,7 +2,7 @@
 
 function setAlarm(event) {
   let minutes = parseFloat(event.target.value);
-  chrome.browserAction.setBadgeText({text: 'ON'});
+  chrome.browserAction.setBadgeText({text: ' '});
   chrome.alarms.create({delayInMinutes: minutes});
   chrome.storage.sync.set({minutes: minutes});
   window.close();
