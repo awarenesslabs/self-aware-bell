@@ -51,11 +51,8 @@ function checkIfShouldRingBell() {
     if(item.timeSinceStarted <= 0) {
       return;
     }
-    // TODO
-    console.log(item.timeSinceStarted + ' >= ' + item.bellTimeInMinutes);
     if(item.timeSinceStarted >= item.bellTimeInMinutes) {
       playBell();
-      // TODO: not resetting here
       restartBell();
     }
   })
