@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "Self Aware Bell",
-  "description": "This extension allows the user to be aware.",
-  "version": "1.1",
+  "description": "Be more aware of where you spend your time",
+  "version": "1.2",
 
   "browser_action": {
     "default_icon": "icon.png",
@@ -16,5 +16,5 @@
     "persistent": false
   },
 
-  "permissions": ["alarms", "notifications", "storage"]
+  "permissions": ["alarms", "notifications", "storage", "tabs"]
 }

@@ -1,10 +1,13 @@
 'use strict';
 
+var bellCheckEvery = 0.1; //Every 10 seconds
+
 function setAlarm(event) {
   let minutes = parseFloat(event.target.value);
   chrome.browserAction.setBadgeText({text: ' '});
-  chrome.alarms.create({delayInMinutes: minutes});
-  chrome.storage.sync.set({minutes: minutes});
+  chrome.storage.sync.set({bellTimeInMinutes: minutes});
+  chrome.storage.sync.set({bellCheckEvery: bellCheckEvery});
+  chrome.alarms.create({periodInMinutes: bellCheckEvery, delayInMinutes:bellCheckEvery});
   window.close();
 }
 
@@ -14,9 +17,9 @@ function clearAlarm() {
   window.close();
 }
 
-//An Alarm delay of less than the minimum 1 minute will fire
-// in approximately 1 minute incriments if released
 document.getElementById('sampleSecond').addEventListener('click', setAlarm);
+document.getElementById('10seconds').addEventListener('click', setAlarm);
 document.getElementById('1min').addEventListener('click', setAlarm);
+document.getElementById('5min').addEventListener('click', setAlarm);
 document.getElementById('15min').addEventListener('click', setAlarm);
 document.getElementById('cancelAlarm').addEventListener('click', clearAlarm);
