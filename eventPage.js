@@ -8,6 +8,7 @@ chrome.runtime.onInstalled.addListener(function(){
     if (window == chrome.windows.WINDOW_ID_NONE) {
       // TODO: - better to remove the alarms when no focus
       chrome.storage.sync.set({isFocused: false});
+      restartBell();
     } else {
       chrome.storage.sync.set({isFocused: true});
     }
@@ -34,26 +35,15 @@ chrome.alarms.onAlarm.addListener(function() {
           chrome.storage.sync.set({timeSinceStarted: item.timeSinceStarted + item.bellCheckEvery});
         })
       }
-    });
-  
+
     checkIfShouldRingBell();
+    });
   })
 });
 
 // TODO: Only checks for facebook
 function isDistractingUrl(url) {
   return (/^(https?:\/\/)?((w{3}\.)?)facebook\.com\/*.*/i.test(url))
-}
-
-function validate_url(url)
-{
-  if (/^(https?:\/\/)?((w{3}\.)?)twitter\.com\/(#!\/)?[a-z0-9_]+$/i.test(url))
-     return 'twitter';    
-
- if (/^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i.test(url))
-     return 'facebook';
-
- return 'unknown';
 }
 
 function checkIfShouldRingBell() {
