@@ -40,9 +40,20 @@ chrome.alarms.onAlarm.addListener(function() {
   })
 });
 
-// TODO: match all facebook url - regex
+// TODO: Only checks for facebook
 function isDistractingUrl(url) {
-  return (url === 'https://www.facebook.com/');
+  return (/^(https?:\/\/)?((w{3}\.)?)facebook\.com\/*.*/i.test(url))
+}
+
+function validate_url(url)
+{
+  if (/^(https?:\/\/)?((w{3}\.)?)twitter\.com\/(#!\/)?[a-z0-9_]+$/i.test(url))
+     return 'twitter';    
+
+ if (/^(https?:\/\/)?((w{3}\.)?)facebook.com\/.*/i.test(url))
+     return 'facebook';
+
+ return 'unknown';
 }
 
 function checkIfShouldRingBell() {
@@ -50,7 +61,7 @@ function checkIfShouldRingBell() {
     if(item.timeSinceStarted <= 0) {
       return;
     }
-    // TODO:
+    // TODO
     console.log(item.timeSinceStarted + ' >= ' + item.bellTimeInMinutes);
     if(item.timeSinceStarted >= item.bellTimeInMinutes) {
       playBell();
