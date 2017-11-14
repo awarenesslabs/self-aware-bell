@@ -71,9 +71,14 @@ chrome.notifications.onButtonClicked.addListener(function() {
 
 
 function playBell() {
-  console.log('Breath in')
+  // TODO: perhaps a better way is to hold it globally and not initialize it every time
   const audio = new Audio('bell.mp3');
-  audio.play();
+  chrome.storage.sync.get(['volume'], function(item) {
+    if(item.volume) {
+      audio.volume = item.volume
+    }
+    audio.play();
+  })
 }
 
 function notify() {

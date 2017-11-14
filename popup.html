@@ -1,17 +1,26 @@
 <html>
     <head>
       <title>Self Aware Bell</title>
-      <link rel="stylesheet" href='style.css'>
+      <link rel='stylesheet' href='style.css'>
     </head>
     <body>
       <h4>Self Aware Bell
-        <img src='icon.png' width='30px' height='30px'>
+        <img src='icon.png' class='top-icon' width='30px' height='30px'>
       </h4>
+      <span>
+        Reminds you if you spend more time on Facebook then you choose
+      </span>
+      <br><br>
+      
+      <div>
+        <label>Volume: </label>
+        <input type='range' id='volume' value='100'>
+      </div>
     
       <label class='ringTimeLabel' for='ringTime'>Ring every:</label>
       <select id='ringTime'>
         <option value='0'>Disable</option>    
-        <option value='0.10'>10 Seconds</option>    
+        <option value='0.1'>10 Seconds</option>    
         <option value='1'>1 Minutes</option>  
         <option value='5'>5 Minutes</option>  
         <option value='15'>15 Minutes</option>

@@ -16,6 +16,12 @@ function setAlarm(event) {
   window.close();
 }
 
+function setVolume(event) {
+  console.log(event.target.value);
+  const volumeValue = event.target.value / 100.0;
+  chrome.storage.sync.set({volume: volumeValue});
+}
+
 function clearAlarm() {
   chrome.browserAction.setBadgeText({text: ''});
   chrome.alarms.clearAll();
@@ -25,10 +31,28 @@ function clearAlarm() {
 
 document.getElementById('ringTime').addEventListener('change', setAlarm);
 document.getElementById('cancelAlarm').addEventListener('click', clearAlarm);
+document.getElementById('volume').addEventListener('change', setVolume);
 
-chrome.storage.sync.get('bellTimeInMinutes', function(item) {
-  if(!item || !item.bellTimeInMinutes) {
-    return;
-  }
-  document.getElementById('ringTime').value = item.bellTimeInMinutes;
-});
+function initUi() {
+  initBellTimeUi();
+  initVolumeUi();
+}
+
+function initBellTimeUi() {
+  chrome.storage.sync.get('bellTimeInMinutes', function(item) {
+    let bellTimeInMinutes = (item && item.bellTimeInMinutes) ? item.bellTimeInMinutes : 0;
+    document.getElementById('ringTime').value = bellTimeInMinutes;
+  });
+}
+
+function initVolumeUi() {
+  chrome.storage.sync.get('volume', function(item) {
+    if(item.volume != 0 && (!item || !item.volume)) {
+      return;
+    }
+    const volumeValue = item.volume * 100
+    document.getElementById('volume').value = volumeValue;
+  });
+}
+
+initUi();
