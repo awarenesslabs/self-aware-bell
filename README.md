@@ -1,5 +1,9 @@
 # Bell of mindfulness
 
+## Demo
+[Google chrome extension](https://chrome.google.com/webstore/detail/self-aware-bell/emppjemnmnepcniopeikleoaodnkjoda)
+![App Screenshot](docs/self_aware_bell.jpg?raw=true)
+
 ## What
 A bell that rings to remind us to breathe, connect to ourselves, and avoid destructive patterns and self judgment. It does so at certain intervals, but is also context aware, and aware of the progress or path you are progressing on. Not a crutch, but a learning tool, designed ultimately to be used less and less until it isn’t needed. For people who are learning mindfulness and wish to practice it during their day and would like some help.
 
