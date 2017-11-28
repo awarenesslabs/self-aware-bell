@@ -4,6 +4,11 @@
   "name": "Self Aware Bell",
   "description": "Be more aware of where you spend your time",
   "version": "1.6",
+  "icons": {
+	  "16": "icon16.png",
+	  "48": "icon48.png",
+	  "128": "icon.png"
+  },
 
   "browser_action": {
     "default_icon": "icon.png",
