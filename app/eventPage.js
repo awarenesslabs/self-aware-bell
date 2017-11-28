@@ -2,17 +2,17 @@
 
 chrome.runtime.onInstalled.addListener(function(){
   console.log('i will run once!');
+});
 
-  // Check if chrome is active
-  chrome.windows.onFocusChanged.addListener(function(window) {
-    if (window == chrome.windows.WINDOW_ID_NONE) {
-      // TODO: - better to remove the alarms when no focus
-      chrome.storage.sync.set({isFocused: false});
-      restartBell();
-    } else {
-      chrome.storage.sync.set({isFocused: true});
-    }
-  });
+// Check if chrome is active
+chrome.windows.onFocusChanged.addListener(function(window) {
+  if (window == chrome.windows.WINDOW_ID_NONE) {
+    // TODO: - better to remove the alarms when no focus
+    chrome.storage.sync.set({isFocused: false});
+    restartBell();
+  } else {
+    chrome.storage.sync.set({isFocused: true});
+  }
 });
 
 chrome.alarms.onAlarm.addListener(function() {
