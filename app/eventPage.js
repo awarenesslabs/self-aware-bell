@@ -1,7 +1,7 @@
 'use strict';
 
 chrome.runtime.onInstalled.addListener(function(){
-  console.log('i will run once!');
+
 });
 
 // Check if chrome is active
@@ -41,9 +41,10 @@ chrome.alarms.onAlarm.addListener(function() {
   })
 });
 
-// TODO: Only checks for facebook
 function isDistractingUrl(url) {
-  return (/^(https?:\/\/)?((w{3}\.)?)facebook\.com\/*.*/i.test(url))
+  var isFacebook = (/^(https?:\/\/)?((w{3}\.)?)facebook\.com\/*.*/i.test(url));
+  var isReddit = (/^(https?:\/\/)?((w{3}\.)?)reddit\.com\/*.*/i.test(url));
+  return isFacebook || isReddit;
 }
 
 function checkIfShouldRingBell() {
@@ -52,8 +53,8 @@ function checkIfShouldRingBell() {
       return;
     }
     if(item.timeSinceStarted >= item.bellTimeInMinutes) {
-      playBell();
       restartBell();
+      playBell();
     }
   })
 }
